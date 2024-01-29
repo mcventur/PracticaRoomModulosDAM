@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/containerAddModule"
@@ -12,7 +12,8 @@
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_weight="1"
-        tools:layout="@layout/fragment_add_module"/>
+        tools:layout="@layout/fragment_add_module"
+        android:name="com.mpd.pmdm.practicaroommodulos.ui.AddModuleFragment"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
