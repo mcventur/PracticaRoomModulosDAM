@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddModuleFragment"
+    tools:context=".ui.AddModuleFragment"
     android:padding="@dimen/layout_padding">
 
 
@@ -34,7 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/module_credits"
-            android:inputType="number" />
+            android:inputType="number"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -48,7 +49,7 @@
         android:layout_marginTop="@dimen/field_margin_top"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnClearList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Limpiar lista"

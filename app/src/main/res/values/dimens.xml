@@ -2,4 +2,5 @@
 <resources>
     <dimen name="field_margin_top">10dp</dimen>
     <dimen name="layout_padding">10dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

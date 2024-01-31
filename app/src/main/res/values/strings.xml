@@ -4,4 +4,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="module_name">Nombre del módulo</string>
     <string name="module_credits">Créditos</string>
+    <string name="saved_module_message">Módulo guardado correctamente</string>
+    <string name="alert_dialog_title">Confirmación</string>
+    <string name="alert_dialog_message">Deseas borrar todos los módulos?
+    La operación es irreversible</string>
+    <string name="cancel">Cancelar</string>
+    <string name="confirm">Confirmar</string>
 </resources>
