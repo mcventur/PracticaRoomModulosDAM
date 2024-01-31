@@ -10,4 +10,7 @@
     La operación es irreversible</string>
     <string name="cancel">Cancelar</string>
     <string name="confirm">Confirmar</string>
+    <string name="id">ID</string>
+    <string name="name">Nombre</string>
+    <string name="credits">Créditos</string>
 </resources>

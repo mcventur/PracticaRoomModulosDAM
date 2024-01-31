@@ -1,21 +1,16 @@
 package com.mpd.pmdm.practicaroommodulos.ui
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.mpd.pmdm.practicaroommodulos.R
+import com.mpd.pmdm.practicaroommodulos.data.database.Module
 
-import com.mpd.pmdm.practicaroommodulos.ui.placeholder.PlaceholderContent.PlaceholderItem
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemBinding
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
+
 class ModulesRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>
+    private var modulesList: List<Module> = emptyList()
 ) : RecyclerView.Adapter<ModulesRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,20 +26,24 @@ class ModulesRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        val item = modulesList[position]
+        holder.bind(item)
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = modulesList.size
 
-    inner class ViewHolder(binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+    inner class ViewHolder(val binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(module: Module){
+            binding.moduleId.text = module.id.toString()
+            binding.moduleName.text = module.name
+            binding.moduleCredits.text = module.credits.toString()
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newModulesList: List<Module>){
+        modulesList = newModulesList
+        notifyDataSetChanged()
     }
 
 }
