@@ -4,11 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
@@ -18,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mpd.pmdm.practicaroommodulos.R
 import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemListBinding
@@ -61,12 +68,45 @@ class ModulesListFragment : Fragment() {
         return binding.root
     }
 
+    @OptIn(ExperimentalFoundationApi::class)
     @Composable
     private fun ListaModulos(modifier: Modifier = Modifier) {
         val listaModulos = viewModel.allModules.observeAsState(emptyList())
         LazyColumn(modifier) {
+            stickyHeader {
+                CabeceraListaModulos(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(40.dp)
+                        .padding(bottom = 10.dp)
+                )
+            }
             items(listaModulos.value.size) {
                 RegistroModulo(modifier = Modifier.fillMaxSize(),listaModulos.value[it])
+            }
+        }
+    }
+
+    @Composable
+    private fun CabeceraListaModulos(modifier: Modifier = Modifier) {
+        Surface(modifier){
+            Column {
+                Row {
+                    Text(
+                        text = getString(R.string.id),
+                        modifier = Modifier.weight(1.0f),
+                    )
+                    Text(
+                        text = getString(R.string.name),
+                        modifier = Modifier.weight(3.0f),
+                    )
+                    Text(
+                        text = getString(R.string.credits),
+                        modifier = Modifier.weight(1.0f),
+                    )
+                }
+                Divider()
+
             }
         }
     }
@@ -80,7 +120,7 @@ class ModulesListFragment : Fragment() {
             )
             Text(
                 text = module.name,
-                modifier = Modifier.weight(4.0f),
+                modifier = Modifier.weight(3.0f),
             )
             Text(
                 text = module.credits.toString(),
