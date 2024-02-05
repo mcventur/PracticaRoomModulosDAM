@@ -36,10 +36,27 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
 }
 
 dependencies {
+    val composeBom = platform("androidx.compose:compose-bom:2023.01.00")
+    implementation(composeBom)
+    // Material Design 3
+    implementation("androidx.compose.material3:material3")
+    //Para poder usar composables en Fragments
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    // Optional - Integration with LiveData
+    implementation("androidx.compose.runtime:runtime-livedata")
+
+
+
+
+
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.3.0")
     val room_version = "2.6.1"

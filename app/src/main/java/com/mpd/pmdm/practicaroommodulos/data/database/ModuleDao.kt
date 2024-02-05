@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface ModuleDao {
-    @Query("SELECT * FROM module order by name asc")
+    @Query("SELECT * FROM module order by id desc")
     fun getAllModules(): LiveData<List<Module>>
 
     @Query("DELETE FROM module")
