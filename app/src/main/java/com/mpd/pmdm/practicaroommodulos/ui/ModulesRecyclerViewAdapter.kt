@@ -4,18 +4,33 @@ import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
 
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemBinding
 
 
-class ModulesRecyclerViewAdapter(
-    private var modulesList: List<Module> = emptyList()
-) : RecyclerView.Adapter<ModulesRecyclerViewAdapter.ViewHolder>() {
+class ModulesRecyclerViewAdapter():
+    ListAdapter<Module,ModulesRecyclerViewAdapter.ModuleViewHolder>(DiffUtilItemCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    companion object{
+        val DiffUtilItemCallback = object: DiffUtil.ItemCallback<Module>(){
+            override fun areItemsTheSame(oldItem: Module, newItem: Module): Boolean {
+                return oldItem.id == newItem.id
+            }
 
-        return ViewHolder(
+            override fun areContentsTheSame(oldItem: Module, newItem: Module): Boolean {
+                return oldItem == newItem
+            }
+
+
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ModuleViewHolder {
+
+        return ModuleViewHolder(
             FragmentItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -25,14 +40,13 @@ class ModulesRecyclerViewAdapter(
 
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = modulesList[position]
+    override fun onBindViewHolder(holder: ModuleViewHolder, position: Int) {
+        val item = getItem(position)
         holder.bind(item)
     }
 
-    override fun getItemCount(): Int = modulesList.size
 
-    inner class ViewHolder(val binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ModuleViewHolder(val binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(module: Module){
             binding.moduleId.text = module.id.toString()
             binding.moduleName.text = module.name
@@ -40,10 +54,11 @@ class ModulesRecyclerViewAdapter(
         }
     }
 
+/*  No se usa esto ya con un ListAdapter
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(newModulesList: List<Module>){
         modulesList = newModulesList
         notifyDataSetChanged()
-    }
+    }*/
 
 }

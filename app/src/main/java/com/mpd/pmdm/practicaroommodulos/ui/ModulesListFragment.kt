@@ -41,7 +41,7 @@ class ModulesListFragment : Fragment() {
         binding.list.adapter = adapter
 
         viewModel.allModules.observe(viewLifecycleOwner) {
-            adapter.updateList(it)
+            adapter.submitList(it)
         }
     }
 

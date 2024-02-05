@@ -1,6 +1,7 @@
 package com.mpd.pmdm.practicaroommodulos.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,10 +39,15 @@ class AddModuleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnAddModule.setOnClickListener {
             if(datosIntroducidos()){
-                viewModel.insert(
-                    binding.editModuleName.text.toString(),
-                    binding.editModuleCredits.text.toString().toByte()
-                )
+                try {
+                    viewModel.insert(
+                        binding.editModuleName.text.toString(),
+                        binding.editModuleCredits.text.toString().toByte()
+                    )
+                }catch (e: Exception){
+                    Log.e("AddModuleFragment", e.message?:"")
+                }
+
                 limpiarLoEscrito()
                 mostrarToast(getString(R.string.saved_module_message))
             }
