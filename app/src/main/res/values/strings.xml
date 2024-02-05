@@ -8,4 +8,7 @@
     <string name="alertClearMessage">¿Deseas eliminar todos los datos de módulos?\nLa operación, es irreversible.</string>
     <string name="cancel">Cancelar</string>
     <string name="confirm">Confirmar</string>
+    <string name="id">Id</string>
+    <string name="name">Nombre</string>
+    <string name="credits">Créditos</string>
 </resources>

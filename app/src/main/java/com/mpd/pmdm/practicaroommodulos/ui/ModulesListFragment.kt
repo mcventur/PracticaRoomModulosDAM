@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mpd.pmdm.practicaroommodulos.ModulesApp
+import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemListBinding
-import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModuleViewModel
-import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModuleViewModelFactory
+import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
+import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModelFactory
 
 /**
  * A fragment representing a list of Items.
@@ -19,9 +19,9 @@ class ModulesListFragment : Fragment() {
     private var _binding: FragmentItemListBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ModuleViewModel by activityViewModels {
-        ModuleViewModelFactory(
-            (activity?.application as ModulesApp).appRepository
+    private val viewModel: ModulosViewModel by activityViewModels {
+        ModulosViewModelFactory(
+            (activity?.application as ModuleApp).appRepository
         )
     }
 
@@ -40,8 +40,9 @@ class ModulesListFragment : Fragment() {
         val adapter = ModulesRecyclerViewAdapter()
         binding.list.adapter = adapter
 
+        //Con adaptator de tipo ListAdapter, llamamos a la función submitList
         viewModel.allModules.observe(viewLifecycleOwner) {
-            adapter.updateList(it)
+            adapter.submitList(it)
         }
     }
 

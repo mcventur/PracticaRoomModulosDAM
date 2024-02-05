@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.PracticaRoomModulos" parent="Base.Theme.PracticaRoomModulos" />
+
+    <!-- Añadidos -->
+    <!-- Divider -->
+    <style name="Theme.PracticaRoomModulos.Divider">
+        <item name="android:background">?attr/dividerHorizontal</item>
+    </style>
 </resources>

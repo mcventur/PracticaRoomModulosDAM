@@ -34,6 +34,7 @@ class AddModuleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnAddModule.setOnClickListener {
+            //TODO: Validación y control de errores
             modulosViewModel.insert(binding.editModuleName.text.toString(), binding.editModuleCredits.text.toString().toByte())
         }
 

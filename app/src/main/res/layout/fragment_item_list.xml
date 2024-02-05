@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/layout_padding">
 
-<include layout="@layout/fragment_item_list_header"
-    android:id="@+id/cabecera"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layout_constraintTop_toTopOf="parent"/>
+    <include
+        android:id="@+id/cabecera"
+        layout="@layout/fragment_item_list_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
 
-<androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    app:layoutManager="LinearLayoutManager"
-    tools:context=".ui.ModulesListFragment"
-    tools:listitem="@layout/fragment_item"
-    app:layout_constraintTop_toBottomOf="@id/cabecera"
-    app:layout_constraintBottom_toBottomOf="parent"/>
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/cabecera" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cabecera"
+        tools:context=".ui.ModulesListFragment"
+        tools:listitem="@layout/fragment_item"
+        android:paddingTop="@dimen/field_margin_top"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
