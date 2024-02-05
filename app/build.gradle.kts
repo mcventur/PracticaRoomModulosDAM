@@ -36,12 +36,26 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+    composeOptions{
+        kotlinCompilerExtensionVersion = "1.5.8"
     }
 }
 
 dependencies {
     val room_version = "2.6.1"
     val lifecycle_version = "2.7.0"
+    val fragment_version = "1.6.2"
+
+    //Dependencias para Compose
+    val composeBom = platform("androidx.compose:compose-bom:2024.01.00")
+    implementation(composeBom)
+    implementation("androidx.compose.material3:material3")
+    //Para usar Composables en un fragmento
+    implementation("androidx.fragment:fragment-ktx:$fragment_version")
+    //Para usar observeAsState para observar una lista LiveData en un Composable
+    implementation("androidx.compose.runtime:runtime-livedata")
 
     implementation("androidx.room:room-runtime:$room_version")
     // To use Kotlin Symbol Processing (KSP)
