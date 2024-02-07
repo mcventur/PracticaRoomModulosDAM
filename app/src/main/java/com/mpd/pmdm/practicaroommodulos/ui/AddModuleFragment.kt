@@ -1,17 +1,21 @@
 package com.mpd.pmdm.practicaroommodulos.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.mpd.pmdm.practicaroommodulos.R
 import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentAddModuleBinding
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModelFactory
+import kotlinx.coroutines.launch
 
 
 class AddModuleFragment : Fragment() {
@@ -35,7 +39,12 @@ class AddModuleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnAddModule.setOnClickListener {
             //TODO: Validación y control de errores
-            modulosViewModel.insert(binding.editModuleName.text.toString(), binding.editModuleCredits.text.toString().toByte())
+            lifecycleScope.launch {
+                val id= modulosViewModel.insert(binding.editModuleName.text.toString(), binding.editModuleCredits.text.toString().toByte())
+                Log.d("AddModuleFragment", "Id insertado: $id")
+                Toast.makeText(requireContext(), "El id insertado es $id", Toast.LENGTH_LONG).show()
+            }
+
         }
 
         binding.btnClearList.setOnClickListener {

@@ -8,8 +8,8 @@ class AppRepository(private val moduleDao: ModuleDao) {
     val allModules = moduleDao.getAllModules()
 
 
-    suspend fun insert(module: Module) {
-        moduleDao.insert(module)
+    suspend fun insert(module: Module): Long {
+        return moduleDao.insert(module)
     }
 
 

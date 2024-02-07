@@ -6,16 +6,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.mpd.pmdm.practicaroommodulos.data.AppRepository
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class ModulosViewModel(private val appRepository: AppRepository): ViewModel() {
     val allModules: LiveData<List<Module>> = appRepository.allModules
 
-    fun insert(moduleName: String, moduleCredits: Byte){
-        viewModelScope.launch {
+    suspend fun insert(moduleName: String, moduleCredits: Byte): Long{
+        return viewModelScope.async {
             val module = Module(name = moduleName, credits = moduleCredits)
-            appRepository.insert(module)
-        }
+            val id = appRepository.insert(module)
+            id
+        }.await()
+
     }
 
     fun clearAll(){

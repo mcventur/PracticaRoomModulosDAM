@@ -13,7 +13,7 @@ interface ModuleDao {
 
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(module: Module)
+    suspend fun insert(module: Module): Long
 
     @Query("DELETE FROM module")
     suspend fun clearAll()
