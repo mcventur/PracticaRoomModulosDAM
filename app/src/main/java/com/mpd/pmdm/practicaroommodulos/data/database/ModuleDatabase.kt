@@ -42,7 +42,7 @@ abstract class ModuleDatabase: RoomDatabase() {
 val MIGRATION_1_2 = object : Migration(1, 2){
     override fun migrate(db: SupportSQLiteDatabase) {
         db.execSQL("CREATE TABLE ciclo (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)")
-        db.execSQL("INSERT INTO ciclo VALUES (1, 'Desarrollo de Aplicaciones Multiplataforma')")
+        db.execSQL("INSERT OR REPLACE INTO ciclo VALUES (1, 'Desarrollo de Aplicaciones Multiplataforma')")
         db.execSQL("INSERT INTO ciclo VALUES (1, 'Desarrollo de Aplicaciones Multiplataforma')")
         db.execSQL("ALTER TABLE module ADD COLUMN cicloId INTEGER NOT NULL DEFAULT 1")
         db.execSQL("ALTER TABLE module ADD COLUMN curso INTEGER NOT NULL DEFAULT 1")
