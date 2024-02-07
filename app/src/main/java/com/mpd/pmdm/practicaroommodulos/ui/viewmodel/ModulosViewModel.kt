@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 
 class ModulosViewModel(private val appRepository: AppRepository): ViewModel() {
     val allModules: LiveData<List<Module>> = appRepository.allModules
+    val allCiclos = appRepository.allCiclos
 
     suspend fun insert(moduleName: String, moduleCredits: Byte): Long{
         return viewModelScope.async {

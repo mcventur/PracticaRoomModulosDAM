@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,6 +26,8 @@ class AddModuleFragment : Fragment() {
     private val modulosViewModel: ModulosViewModel by activityViewModels{
         ModulosViewModelFactory((activity?.application as ModuleApp).appRepository)
     }
+
+    private lateinit var arrayCiclos: Array<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,6 +62,9 @@ class AddModuleFragment : Fragment() {
                 }
                 .show()
         }
+
+        //Seteamos los datos del selector de Ciclos
+        binding.editModuleCiclo.adapter = ArrayAdapter()
     }
 
     override fun onDestroyView() {

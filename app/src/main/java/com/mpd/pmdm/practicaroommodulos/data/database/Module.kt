@@ -3,10 +3,22 @@ package com.mpd.pmdm.practicaroommodulos.data.database
 import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
-@Entity(tableName = "module")
+@Entity(
+    tableName = "module",
+    foreignKeys = [
+        ForeignKey(
+            entity = Ciclo::class,
+            parentColumns = ["id"],
+            childColumns = ["cicloId"],
+            onDelete = ForeignKey.CASCADE,
+            onUpdate = ForeignKey.CASCADE
+        )
+    ]
+)
 data class Module(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String,

@@ -45,4 +45,7 @@ interface ModuleDao {
     @Query("SELECT ciclo.* FROM module JOIN ciclo ON (ciclo.id = module.cicloId) " +
             "WHERE module.cicloId = :moduleId")
     fun getCicloOfModule(moduleId: Long): CiclosWithModules
+
+    @Query("SELECT * FROM ciclo")
+    fun getAllCiclos(): LiveData<Array<Ciclo>>
 }
