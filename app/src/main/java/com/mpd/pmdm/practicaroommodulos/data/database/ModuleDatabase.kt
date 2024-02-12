@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.Room.databaseBuilder
 import androidx.room.RoomDatabase
 
-@Database(entities = [Module::class], version = 1)
+@Database(entities = [Module::class], version = 1, exportSchema = true)
 abstract class ModuleDatabase: RoomDatabase() {
 
     abstract fun moduleDao(): ModuleDao
