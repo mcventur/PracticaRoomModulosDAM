@@ -42,30 +42,29 @@
         style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/field_margin_top"
         android:hint="@string/select_ciclo"
-        app:layout_constraintTop_toBottomOf="@id/layoutModuleCredits"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutModuleCredits">
 
         <AutoCompleteTextView
             android:id="@+id/editModuleCiclo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="none"
-            />
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
 
 
     <Button
         android:id="@+id/btnAddModule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/field_margin_top"
         android:text="Guardar"
         app:layout_constraintEnd_toStartOf="@+id/btnClearList"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutModuleCredits"
-        android:layout_marginTop="@dimen/field_margin_top"/>
+        app:layout_constraintTop_toBottomOf="@id/layoutCiclosList" />
 
     <Button
         android:id="@+id/btnClearList"

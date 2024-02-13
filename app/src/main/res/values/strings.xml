@@ -12,4 +12,5 @@
     <string name="name">Nombre</string>
     <string name="credits">Créditos</string>
     <string name="select_ciclo">Selecciona un ciclo</string>
+    <string name="error_mandatory">Campo obligatorio</string>
 </resources>

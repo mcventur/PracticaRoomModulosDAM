@@ -47,5 +47,5 @@ interface ModuleDao {
     fun getCicloOfModule(moduleId: Long): CiclosWithModules
 
     @Query("SELECT * FROM ciclo")
-    fun getAllCiclos(): LiveData<Array<Ciclo>>
+    fun getAllCiclos(): LiveData<List<Ciclo>>
 }

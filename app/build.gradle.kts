@@ -16,6 +16,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        //https://medium.com/@vontonnie/create-room-schema-export-directory-7066d427eae8
+        // For KSP, configure using KSP extension:
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
     }
 
     buildTypes {
@@ -41,6 +47,8 @@ android {
     composeOptions{
         kotlinCompilerExtensionVersion = "1.5.8"
     }
+
+
 }
 
 dependencies {
