@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 
 @Dao
 interface ModuleDao {
@@ -17,4 +18,8 @@ interface ModuleDao {
     //TODO: pROBAR A VER SI DEVUELVE EL ID INSERTADO COMO DICE LA DOCUMENTACION
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(module: Module)
+
+    @Transaction
+    @Query("SELECT * FROM Ciclo")
+    fun getAllCiclosConModulos():LiveData<List<CiclosConModulos>>
 }
