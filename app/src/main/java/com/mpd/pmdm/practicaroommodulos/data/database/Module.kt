@@ -9,5 +9,7 @@ import androidx.room.PrimaryKey
 data class Module(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
-    val credits: Byte
+    val credits: Byte,
+    //Este añadido es válido para automigración
+    @ColumnInfo(defaultValue = "1") val curso: Byte
 )

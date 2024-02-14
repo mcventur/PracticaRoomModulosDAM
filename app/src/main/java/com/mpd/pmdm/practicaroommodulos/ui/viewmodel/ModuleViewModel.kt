@@ -12,7 +12,7 @@ class ModuleViewModel(private val appRepository: AppRepository): ViewModel() {
     val allModules = appRepository.allModules
 
     fun insert(moduleName: String, moduleCredits: Byte){
-        val newModule = Module(name = moduleName, credits = moduleCredits)
+        val newModule = Module(name = moduleName, credits = moduleCredits, curso = 1)
         viewModelScope.launch {
             appRepository.insert(newModule)
         }
