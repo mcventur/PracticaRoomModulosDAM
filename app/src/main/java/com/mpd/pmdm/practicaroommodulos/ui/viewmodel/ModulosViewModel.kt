@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.mpd.pmdm.practicaroommodulos.data.AppRepository
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ModulosViewModel(private val appRepository: AppRepository): ViewModel() {
+@HiltViewModel
+class ModulosViewModel @Inject constructor(private val appRepository: AppRepository): ViewModel() {
     val allModules: LiveData<List<Module>> = appRepository.allModules
 
     suspend fun insert(moduleName: String, moduleCredits: Byte): Long{
@@ -25,14 +28,5 @@ class ModulosViewModel(private val appRepository: AppRepository): ViewModel() {
         viewModelScope.launch {
             appRepository.clearAll()
         }
-    }
-}
-
-class ModulosViewModelFactory(private val repository: AppRepository): ViewModelProvider.Factory{
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(ModulosViewModel::class.java))
-            return ModulosViewModel(repository) as T
-        throw IllegalArgumentException("Error al instanciar el ViewModel")
     }
 }

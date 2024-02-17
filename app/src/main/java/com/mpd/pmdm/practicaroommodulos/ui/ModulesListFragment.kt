@@ -23,26 +23,21 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mpd.pmdm.practicaroommodulos.R
-import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemListBinding
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
-import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A fragment representing a list of Items.
  */
+@AndroidEntryPoint
 class ModulesListFragment : Fragment() {
     private var _binding: FragmentItemListBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ModulosViewModel by activityViewModels {
-        ModulosViewModelFactory(
-            (activity?.application as ModuleApp).appRepository
-        )
-    }
+    private val viewModel: ModulosViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,14 +77,14 @@ class ModulesListFragment : Fragment() {
                 )
             }
             items(listaModulos.value.size) {
-                RegistroModulo(modifier = Modifier.fillMaxSize(),listaModulos.value[it])
+                RegistroModulo(modifier = Modifier.fillMaxSize(), listaModulos.value[it])
             }
         }
     }
 
     @Composable
     private fun CabeceraListaModulos(modifier: Modifier = Modifier) {
-        Surface(modifier){
+        Surface(modifier) {
             Column {
                 Row {
                     Text(
@@ -113,7 +108,7 @@ class ModulesListFragment : Fragment() {
 
     @Composable
     private fun RegistroModulo(modifier: Modifier = Modifier, module: Module) {
-        Row(modifier){
+        Row(modifier) {
             Text(
                 text = module.id.toString(),
                 modifier = Modifier.weight(1.0f),

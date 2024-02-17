@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -16,10 +17,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        ksp {
-            arg("room.schemaLocation", "$projectDir/schemas")
-        }
     }
 
     buildTypes {
@@ -51,6 +48,11 @@ dependencies {
     val room_version = "2.6.1"
     val lifecycle_version = "2.7.0"
     val fragment_version = "1.6.2"
+
+    //Dependencias para Dagger Hilt
+    implementation("com.google.dagger:hilt-android:2.48.1")
+    ksp("com.google.dagger:dagger-compiler:2.48.1") // Dagger compiler
+    ksp("com.google.dagger:hilt-compiler:2.48.1")   // Hilt compiler
 
     //Dependencias para Compose
     val composeBom = platform("androidx.compose:compose-bom:2024.01.00")

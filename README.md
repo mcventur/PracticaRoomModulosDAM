@@ -23,4 +23,11 @@ Para migrar el Adapter a una LacyList podemos seguir esta guía:
 https://developer.android.com/jetpack/compose/migrate/migration-scenarios/recycler-view
 o este tutorial https://dev.to/mahendranv/using-viewmodel-livedata-with-jetpack-compose-31h8
 
-   
+### Para usar Dagger Hilt como inyector de dependencias, con KSP
+ - Dependencias: https://developer.android.com/training/dependency-injection/hilt-android#setup
+y para hacerlo con ksp: https://dagger.dev/dev-guide/ksp.html
+
+    **OJO: No usamos kapt, sino ksp.** Así que meteremos lo mismo que aparece en la guía de Android salvo las referencias a kapt.
+    
+    Omitiremos la referencia final a ```correctErrorTypes```, propia de kapt. 
+

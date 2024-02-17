@@ -10,24 +10,4 @@ import androidx.room.RoomDatabase
 abstract class ModuleDatabase: RoomDatabase() {
 
     abstract fun moduleDao(): ModuleDao
-
-    companion object{
-        //Marcamos como volatile para que cualquier hilo vea el valor actual del dato
-        @Volatile
-        private var INSTANCE: ModuleDatabase? = null
-
-        //Nótese el uso del operador Elvis
-        fun getDataBase(context: Context): ModuleDatabase{
-            return INSTANCE ?: synchronized(this){
-                val instance = databaseBuilder(
-                    context,
-                    ModuleDatabase::class.java,
-                    "app_database")
-                    .build()
-                INSTANCE = instance
-
-                instance
-            }
-        }
-    }
 }
