@@ -3,25 +3,32 @@ package com.mpd.pmdm.practicaroommodulos.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.mpd.pmdm.practicaroommodulos.data.AppRepository
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ModulosViewModel(private val appRepository: AppRepository): ViewModel() {
     val allModules: LiveData<List<Module>> = appRepository.allModules
 
-    fun getDisplayIdPreference(): Flow<Boolean> {
-        return appRepository.displayIdOnList
-    }
+
+    val displayIdPreference = appRepository.displayIdOnList
 
     fun setDisplayIdPreference(displayId: Boolean){
         viewModelScope.launch(Dispatchers.IO) { appRepository.saveDisplayIdOnList(displayId) }
+    }
+
+    val sortField = appRepository.sortField
+    fun setSortField(sortField: String){
+        viewModelScope.launch(Dispatchers.IO) { appRepository.saveSortField(sortField) }
+    }
+
+    val getSortAsc = appRepository.sortAsc
+    fun setSortAsc(sortAsc: Boolean){
+        viewModelScope.launch { appRepository.saveSortAsc(sortAsc) }
     }
 
     suspend fun insert(moduleName: String, moduleCredits: Byte): Long{

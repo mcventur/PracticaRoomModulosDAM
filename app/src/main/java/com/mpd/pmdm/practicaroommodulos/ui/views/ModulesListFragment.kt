@@ -73,7 +73,7 @@ class ModulesListFragment : Fragment() {
     @Composable
     private fun ListaModulos(modifier: Modifier = Modifier) {
         val listaModulos = viewModel.allModules.observeAsState(emptyList())
-        val displayId = viewModel.getDisplayIdPreference().collectAsState(initial = true)
+        val displayId = viewModel.displayIdPreference.collectAsState(initial = true)
 
         LazyColumn(modifier) {
             stickyHeader {

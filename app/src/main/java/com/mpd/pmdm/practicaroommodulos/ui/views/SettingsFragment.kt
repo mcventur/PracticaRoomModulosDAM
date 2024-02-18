@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.mpd.pmdm.practicaroommodulos.R
 import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentSettingsBinding
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
@@ -34,9 +35,26 @@ class SettingsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
-            modulosViewModel.getDisplayIdPreference().collect() {
+            modulosViewModel.displayIdPreference.collect {
                 binding.displayIdSwitch.isChecked = it
             }
+
+            modulosViewModel.sortField.collect{
+                when(it){
+                    "id" -> binding.rbtSortId.isChecked = true
+                    "name" -> binding.rbtSortName.isChecked = true
+                    else -> binding.rbtSortCredits.isChecked = true
+                }
+            }
+        }
+
+        binding.radioGroup.setOnCheckedChangeListener { group, checkedId ->
+            val sortField = when(checkedId){
+                R.id.rbtSortId -> "id"
+                R.id.rbtSortName -> "name"
+                else -> "credits"
+            }
+            modulosViewModel.setSortField(sortField)
         }
 
         binding.displayIdSwitch.setOnClickListener {
