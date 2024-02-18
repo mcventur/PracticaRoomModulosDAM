@@ -15,6 +15,7 @@ import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentAddModuleBinding
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModelFactory
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -58,6 +59,16 @@ class AddModuleFragment : Fragment() {
                     modulosViewModel.clearAll()
                 }
                 .show()
+        }
+
+        lifecycleScope.launch {
+            modulosViewModel.getDisplayIdPreference().collect(){
+                binding.displayIdSwitch.isChecked = it
+            }
+        }
+
+        binding.displayIdSwitch.setOnClickListener{
+            modulosViewModel.setDisplayIdPreference(binding.displayIdSwitch.isChecked)
         }
     }
 

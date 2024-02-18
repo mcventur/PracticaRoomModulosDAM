@@ -17,12 +17,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mpd.pmdm.practicaroommodulos.R
 import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
@@ -30,6 +33,7 @@ import com.mpd.pmdm.practicaroommodulos.data.database.Module
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemListBinding
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModelFactory
+import kotlinx.coroutines.launch
 
 /**
  * A fragment representing a list of Items.
@@ -72,30 +76,34 @@ class ModulesListFragment : Fragment() {
     @Composable
     private fun ListaModulos(modifier: Modifier = Modifier) {
         val listaModulos = viewModel.allModules.observeAsState(emptyList())
+        val displayId = viewModel.getDisplayIdPreference().collectAsState(initial = true)
+
         LazyColumn(modifier) {
             stickyHeader {
                 CabeceraListaModulos(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(40.dp)
-                        .padding(bottom = 10.dp)
+                        .padding(bottom = 10.dp), displayId
                 )
             }
             items(listaModulos.value.size) {
-                RegistroModulo(modifier = Modifier.fillMaxSize(),listaModulos.value[it])
+                RegistroModulo(modifier = Modifier.fillMaxSize(),listaModulos.value[it], displayId)
             }
         }
     }
 
     @Composable
-    private fun CabeceraListaModulos(modifier: Modifier = Modifier) {
+    private fun CabeceraListaModulos(modifier: Modifier = Modifier, displayId: State<Boolean>) {
         Surface(modifier){
             Column {
                 Row {
-                    Text(
-                        text = getString(R.string.id),
-                        modifier = Modifier.weight(1.0f),
-                    )
+                    if(displayId.value){
+                        Text(
+                            text = getString(R.string.id),
+                            modifier = Modifier.weight(1.0f),
+                        )
+                    }
                     Text(
                         text = getString(R.string.name),
                         modifier = Modifier.weight(3.0f),
@@ -112,12 +120,14 @@ class ModulesListFragment : Fragment() {
     }
 
     @Composable
-    private fun RegistroModulo(modifier: Modifier = Modifier, module: Module) {
+    private fun RegistroModulo(modifier: Modifier = Modifier, module: Module, displayId: State<Boolean>) {
         Row(modifier){
-            Text(
-                text = module.id.toString(),
-                modifier = Modifier.weight(1.0f),
-            )
+            if(displayId.value){
+                Text(
+                    text = module.id.toString(),
+                    modifier = Modifier.weight(1.0f),
+                )
+            }
             Text(
                 text = module.name,
                 modifier = Modifier.weight(3.0f),

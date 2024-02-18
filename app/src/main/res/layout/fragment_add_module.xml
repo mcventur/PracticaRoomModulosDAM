@@ -41,7 +41,7 @@
         android:id="@+id/btnAddModule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Guardar"
+        android:text="@string/guardar"
         app:layout_constraintEnd_toStartOf="@+id/btnClearList"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutModuleCredits"
@@ -51,10 +51,17 @@
         android:id="@+id/btnClearList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Limpiar lista"
+        android:text="@string/limpiar_lista"
         app:layout_constraintBottom_toBottomOf="@+id/btnAddModule"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnAddModule"
         />
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/displayIdSwitch"
+        android:text="@string/display_id"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddModule"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
