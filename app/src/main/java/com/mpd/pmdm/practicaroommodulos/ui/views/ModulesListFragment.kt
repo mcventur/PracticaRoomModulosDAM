@@ -1,4 +1,4 @@
-package com.mpd.pmdm.practicaroommodulos.ui
+package com.mpd.pmdm.practicaroommodulos.ui.views
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,15 +25,12 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mpd.pmdm.practicaroommodulos.R
 import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemListBinding
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModelFactory
-import kotlinx.coroutines.launch
 
 /**
  * A fragment representing a list of Items.

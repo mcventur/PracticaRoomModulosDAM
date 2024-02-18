@@ -1,4 +1,4 @@
-package com.mpd.pmdm.practicaroommodulos.ui
+package com.mpd.pmdm.practicaroommodulos.ui.views
 
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +15,6 @@ import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentAddModuleBinding
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModelFactory
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -61,15 +60,7 @@ class AddModuleFragment : Fragment() {
                 .show()
         }
 
-        lifecycleScope.launch {
-            modulosViewModel.getDisplayIdPreference().collect(){
-                binding.displayIdSwitch.isChecked = it
-            }
-        }
 
-        binding.displayIdSwitch.setOnClickListener{
-            modulosViewModel.setDisplayIdPreference(binding.displayIdSwitch.isChecked)
-        }
     }
 
     override fun onDestroyView() {
