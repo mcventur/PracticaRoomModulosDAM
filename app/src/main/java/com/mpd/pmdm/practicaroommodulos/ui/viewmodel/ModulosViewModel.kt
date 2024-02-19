@@ -4,18 +4,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.mpd.pmdm.practicaroommodulos.data.AppRepository
+import com.mpd.pmdm.practicaroommodulos.data.DatabaseRepository
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
+import com.mpd.pmdm.practicaroommodulos.data.datastore.DataStoreRepository
+import com.mpd.pmdm.practicaroommodulos.data.datastore.PREF_DISPLAY_ID_COLUMN
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class ModulosViewModel(private val appRepository: AppRepository): ViewModel() {
+class ModulosViewModel(private val appRepository: DatabaseRepository, private val listPreferences: DataStoreRepository): ViewModel() {
     val allModules: LiveData<List<Module>> = appRepository.allModules
 
 
-    val displayIdPreference = appRepository.displayIdOnList
+    val displayIdPreference = viewModelScope.async {
+        listPreferences.getBoolean(PREF_DISPLAY_ID_COLUMN)
+    }.await()
 
     fun setDisplayIdPreference(displayId: Boolean){
         viewModelScope.launch(Dispatchers.IO) { appRepository.saveDisplayIdOnList(displayId) }
@@ -46,7 +49,7 @@ class ModulosViewModel(private val appRepository: AppRepository): ViewModel() {
     }
 }
 
-class ModulosViewModelFactory(private val repository: AppRepository): ViewModelProvider.Factory{
+class ModulosViewModelFactory(private val repository: DatabaseRepository): ViewModelProvider.Factory{
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(ModulosViewModel::class.java))
