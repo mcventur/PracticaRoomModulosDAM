@@ -11,4 +11,12 @@
     <string name="id">Id</string>
     <string name="name">Nombre</string>
     <string name="credits">Créditos</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="display_id">Mostrar columna Id</string>
+    <string name="limpiar_lista">Limpiar lista</string>
+    <string name="guardar">Guardar</string>
+    <string name="sort_field_tag">Ordenar listado por</string>
+    <string name="settings">Configuración</string>
+    <string name="orden_ascendente">Orden Ascendente</string>
+    <string name="modulos">Módulos</string>
 </resources>

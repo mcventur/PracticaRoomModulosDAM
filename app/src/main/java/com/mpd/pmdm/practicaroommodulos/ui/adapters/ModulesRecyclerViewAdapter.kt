@@ -1,12 +1,10 @@
-package com.mpd.pmdm.practicaroommodulos.ui
+package com.mpd.pmdm.practicaroommodulos.ui.adapters
 
-import android.annotation.SuppressLint
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
 
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemBinding
