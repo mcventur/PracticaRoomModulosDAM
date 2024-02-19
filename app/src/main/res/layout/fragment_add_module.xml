@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AddModuleFragment"
+    tools:context=".ui.views.AddModuleFragment"
     android:padding="@dimen/layout_padding">
 
 

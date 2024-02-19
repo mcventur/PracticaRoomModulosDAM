@@ -1,4 +1,4 @@
-package com.mpd.pmdm.practicaroommodulos.ui
+package com.mpd.pmdm.practicaroommodulos.ui.views
 
 import android.os.Bundle
 import android.util.Log

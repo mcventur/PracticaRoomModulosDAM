@@ -51,6 +51,14 @@ dependencies {
     val room_version = "2.6.1"
     val lifecycle_version = "2.7.0"
     val fragment_version = "1.6.2"
+    val nav_version = "2.7.7"
+
+    //Navigation Component
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //Para usar DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     //Dependencias para Compose
     val composeBom = platform("androidx.compose:compose-bom:2024.01.00")
