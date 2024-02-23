@@ -17,7 +17,7 @@ class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
     private val modulosViewModel: ModulosViewModel by activityViewModels {
-        ModulosViewModelFactory((activity?.application as ModuleApp).appRepository)
+        ModulosViewModelFactory()
     }
 
     override fun onCreateView(
@@ -32,6 +32,17 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //Al cargar el fragment en pantalla, se actualiza el estado de cada vista conforme
+        //a lo guardado en el datastore
+        modulosViewModel.preferencias.observe(viewLifecycleOwner){userPreferences ->
+            binding.displayIdSwitch.isChecked = userPreferences.displayId
+        }
+
+        //Escribimos en el datastore si hay cambios en alguna de las preferencias
+        binding.displayIdSwitch.setOnCheckedChangeListener { _, isChecked ->
+            modulosViewModel.setDisplayIdPref(isChecked)
+        }
     }
 
     override fun onDestroyView() {

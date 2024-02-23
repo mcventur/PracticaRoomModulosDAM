@@ -2,6 +2,7 @@ package com.mpd.pmdm.practicaroommodulos.ui.adapters
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -12,6 +13,8 @@ import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemBinding
 
 class ModulesRecyclerViewAdapter():
     ListAdapter<Module, ModulesRecyclerViewAdapter.ViewHolder>(ModuleDiffCallback) {
+
+    var idFieldvisibility = View.VISIBLE
 
     //Escribimos nuestra implementación de Diffutil.Itemcallback
     companion object{
@@ -41,6 +44,7 @@ class ModulesRecyclerViewAdapter():
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
+        holder.binding.moduleId.visibility = idFieldvisibility
     }
 
     inner class ViewHolder(val binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {

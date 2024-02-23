@@ -21,9 +21,7 @@ class ModulesListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: ModulosViewModel by activityViewModels {
-        ModulosViewModelFactory(
-            (activity?.application as ModuleApp).appRepository
-        )
+        ModulosViewModelFactory()
     }
 
     override fun onCreateView(
@@ -44,6 +42,13 @@ class ModulesListFragment : Fragment() {
         //Con adaptator de tipo ListAdapter, llamamos a la función submitList
         viewModel.allModules.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+        }
+
+        viewModel.preferencias.observe(viewLifecycleOwner){userPreferences ->
+            val idViewVisibility = if(userPreferences.displayId) View.VISIBLE else View.GONE
+            binding.cabecera.tvIdHeader.visibility = idViewVisibility
+            adapter.idFieldvisibility = idViewVisibility
+            adapter.notifyDataSetChanged()
         }
     }
 

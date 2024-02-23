@@ -23,7 +23,7 @@ class AddModuleFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val modulosViewModel: ModulosViewModel by activityViewModels{
-        ModulosViewModelFactory((activity?.application as ModuleApp).appRepository)
+        ModulosViewModelFactory()
     }
 
     override fun onCreateView(
