@@ -8,7 +8,7 @@
     android:padding="@dimen/layout_padding">
 
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/displayIdSwitch"
@@ -52,7 +52,7 @@
     </RadioGroup>
 
     <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/switch1"
+        android:id="@+id/sortAscendingSwitch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/field_margin_top"
