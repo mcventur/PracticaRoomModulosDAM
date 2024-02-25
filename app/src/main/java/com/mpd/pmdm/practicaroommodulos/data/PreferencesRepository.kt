@@ -1,5 +1,6 @@
 package com.mpd.pmdm.practicaroommodulos.data
 
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
@@ -17,6 +18,10 @@ class PreferencesRepository(val dataStore: DataStore<Preferences>) {
     private object PreferencesKeys {
         val DISPLAY_ID_FIELD = booleanPreferencesKey("display_id_field")
         val NIGHT_MODE = booleanPreferencesKey("night_mode")
+    }
+
+    companion object {
+        val TAG = "PreferencesRepository"
     }
 
     //LECTURA DE DATOS DEL DATASTORE
@@ -59,11 +64,12 @@ class PreferencesRepository(val dataStore: DataStore<Preferences>) {
         }
     }
 
-    //En este caso, simplemenmte cambia el valor por el contrario
+    //En este caso, simplemenmte cambia el valor por el valor contrario
     suspend fun toogleNightMode() {
         try {
             dataStore.edit { preferences ->
                 val valorActual = preferences[PreferencesKeys.NIGHT_MODE] ?: false
+                Log.d(TAG, "Conmutando Night Mode. Valor actual $valorActual")
                 preferences[PreferencesKeys.NIGHT_MODE] = !valorActual
             }
         } catch (e: IOException) {
