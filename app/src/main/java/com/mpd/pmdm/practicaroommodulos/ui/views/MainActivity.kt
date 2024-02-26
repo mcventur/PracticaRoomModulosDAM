@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
         } else {
             itemNightMode?.setIcon(R.drawable.baseline_mode_night_24)
-            itemNightMode?.icon?.setTint(Color.BLACK)
+            //itemNightMode?.icon?.setTint(Color.BLACK)
         }
 
         return true

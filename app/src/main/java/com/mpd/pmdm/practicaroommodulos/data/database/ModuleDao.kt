@@ -5,6 +5,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.RawQuery
+import androidx.sqlite.db.SupportSQLiteQuery
 
 @Dao
 interface ModuleDao {
@@ -17,4 +19,7 @@ interface ModuleDao {
 
     @Query("DELETE FROM module")
     suspend fun clearAll()
+
+    @RawQuery(observedEntities = [Module::class])
+    fun getAllModulesSorted(query: SupportSQLiteQuery): LiveData<List<Module>>
 }

@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@+id/displayIdSwitch" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/sortFieldGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -52,14 +52,14 @@
     </RadioGroup>
 
     <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/switch1"
+        android:id="@+id/sortAscSwitch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/field_margin_top"
         android:text="@string/orden_ascendente"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/sortFieldGroup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

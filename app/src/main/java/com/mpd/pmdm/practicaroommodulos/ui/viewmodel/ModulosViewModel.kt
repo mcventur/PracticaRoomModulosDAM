@@ -1,6 +1,7 @@
 package com.mpd.pmdm.practicaroommodulos.ui.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -19,8 +20,39 @@ class ModulosViewModel(
     private val prefsRepo: PreferencesRepository
 ): ViewModel() {
 
-    //ACCESO AL RESPOSITORIO DE MODULOS
     val allModules: LiveData<List<Module>> = appRepository.allModules
+    val preferencias: LiveData<UserPreferences> = prefsRepo.userPreferencesFlow.asLiveData()
+
+    //Este LiveData se actualizará cuando cambie allModules o cuando cambie alguna de las
+    //preferencias de ordenación
+    private val _allModulesSorted = MediatorLiveData<List<Module>>()
+    val allModulesSorted: LiveData<List<Module>> = _allModulesSorted
+
+    init{
+        _allModulesSorted.addSource(allModules){
+            updateSortedList()
+        }
+
+        _allModulesSorted.addSource(preferencias){
+            updateSortedList()
+        }
+    }
+
+    private fun updateSortedList() {
+        _allModulesSorted.value = allModules.value
+
+        _allModulesSorted.value = when(preferencias.value?.sortField){
+            SortFields.NAME.toString() ->  _allModulesSorted.value?.sortedByDescending { it.name }
+            SortFields.CREDITS.toString() -> _allModulesSorted.value?.sortedByDescending { it.credits }
+            else -> _allModulesSorted.value?.sortedByDescending { it.id }
+        }
+
+        if(preferencias.value?.sortAsc == true){
+            _allModulesSorted.value = _allModulesSorted.value?.reversed()
+        }
+
+    }
+
 
     suspend fun insert(moduleName: String, moduleCredits: Byte): Long{
         return viewModelScope.async {
@@ -37,9 +69,6 @@ class ModulosViewModel(
         }
     }
 
-    //ACCESO AL REPOSITORIO DE PREFERENCIAS
-    val preferencias = prefsRepo.userPreferencesFlow.asLiveData()
-
     fun setDisplayIdPref(displayIdPref: Boolean){
         viewModelScope.launch {
             prefsRepo.setDisplayIdField(displayIdPref)
@@ -49,6 +78,18 @@ class ModulosViewModel(
     fun toogleNightMode(){
         viewModelScope.launch {
             prefsRepo.toogleNightMode()
+        }
+    }
+
+    fun setSortField(sortFields: SortFields){
+        viewModelScope.launch {
+            prefsRepo.setSortField(sortFields)
+        }
+    }
+
+    fun setSortAsc(sortAsc: Boolean){
+        viewModelScope.launch {
+            prefsRepo.setSortAsc(sortAsc)
         }
     }
 

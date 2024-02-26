@@ -40,9 +40,11 @@ class ModulesListFragment : Fragment() {
         binding.list.adapter = adapter
 
         //Con adaptator de tipo ListAdapter, llamamos a la función submitList
-        viewModel.allModules.observe(viewLifecycleOwner) {
+        viewModel.allModulesSorted.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+
+
 
         viewModel.preferencias.observe(viewLifecycleOwner){userPreferences ->
             val idViewVisibility = if(userPreferences.displayId) View.VISIBLE else View.GONE
