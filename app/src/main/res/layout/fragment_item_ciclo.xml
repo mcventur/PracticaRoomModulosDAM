@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_margin="@dimen/layout_padding"
+    style="?attr/materialCardViewFilledStyle">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/layout_padding">
+
+
+    <TextView
+        android:id="@+id/cicloAbreviatura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="DAM"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textAppearance="?attr/textAppearanceTitleMedium"/>
+
+    <TextView
+        android:id="@+id/cicloId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="@dimen/field_margin"/>
+
+    <TextView
+        android:id="@+id/cicloNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Desarrollo de Aplicaciones Multiplataforma"
+        app:layout_constraintTop_toBottomOf="@id/cicloAbreviatura"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/field_margin"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toBottomOf="@id/cicloNombre"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/edit_3_svgrepo_com"
+        android:scaleType="centerCrop"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>

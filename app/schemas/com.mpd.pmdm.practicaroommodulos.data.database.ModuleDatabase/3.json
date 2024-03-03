@@ -1,12 +1,12 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 2,
-    "identityHash": "c996ca37c397c4def7bc5f4d4530f436",
+    "version": 3,
+    "identityHash": "ade3657fae711909c4be08ba214208f5",
     "entities": [
       {
         "tableName": "module",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `credits` INTEGER NOT NULL, `cicloId` INTEGER NOT NULL DEFAULT 1, `curso` INTEGER NOT NULL DEFAULT 1, `abreviatura` TEXT NOT NULL, FOREIGN KEY(`cicloId`) REFERENCES `ciclo`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `credits` INTEGER NOT NULL, `cicloId` INTEGER NOT NULL DEFAULT 1, `curso` INTEGER NOT NULL DEFAULT 1, `abreviatura` TEXT NOT NULL DEFAULT '', FOREIGN KEY(`cicloId`) REFERENCES `ciclo`(`id`) ON UPDATE CASCADE ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "id",
@@ -44,7 +44,8 @@
             "fieldPath": "abreviatura",
             "columnName": "abreviatura",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": true,
+            "defaultValue": "''"
           }
         ],
         "primaryKey": {
@@ -80,7 +81,7 @@
       },
       {
         "tableName": "ciclo",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `abreviatura` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `abreviatura` TEXT NOT NULL DEFAULT '')",
         "fields": [
           {
             "fieldPath": "id",
@@ -98,7 +99,8 @@
             "fieldPath": "abreviatura",
             "columnName": "abreviatura",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": true,
+            "defaultValue": "''"
           }
         ],
         "primaryKey": {
@@ -114,7 +116,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c996ca37c397c4def7bc5f4d4530f436')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ade3657fae711909c4be08ba214208f5')"
     ]
   }
 }

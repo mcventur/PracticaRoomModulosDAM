@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="field_margin_top">10dp</dimen>
+    <dimen name="field_margin">10dp</dimen>
     <dimen name="layout_padding">10dp</dimen>
 </resources>

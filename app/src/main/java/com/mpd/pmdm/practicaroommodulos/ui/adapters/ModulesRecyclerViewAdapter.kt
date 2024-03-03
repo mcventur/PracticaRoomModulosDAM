@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.mpd.pmdm.practicaroommodulos.data.database.Module
 
-import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemBinding
+import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemModuloBinding
 
 
 class ModulesRecyclerViewAdapter():
@@ -30,7 +30,7 @@ class ModulesRecyclerViewAdapter():
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         return ViewHolder(
-            FragmentItemBinding.inflate(
+            FragmentItemModuloBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -43,7 +43,7 @@ class ModulesRecyclerViewAdapter():
         holder.bind(item)
     }
 
-    inner class ViewHolder(val binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: FragmentItemModuloBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(module: Module){
             binding.moduleId.text = module.id.toString()
             binding.moduleName.text = module.name

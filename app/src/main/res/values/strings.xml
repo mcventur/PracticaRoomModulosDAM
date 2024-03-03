@@ -13,4 +13,6 @@
     <string name="credits">Créditos</string>
     <string name="select_ciclo">Selecciona un ciclo</string>
     <string name="error_mandatory">Campo obligatorio</string>
+    <string name="abreviatura">Abreviatura</string>
+    <string name="module_ciclo">Nombre del ciclo</string>
 </resources>

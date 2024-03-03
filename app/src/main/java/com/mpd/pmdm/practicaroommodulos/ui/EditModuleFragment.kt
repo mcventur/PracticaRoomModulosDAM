@@ -16,14 +16,14 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.mpd.pmdm.practicaroommodulos.R
 import com.mpd.pmdm.practicaroommodulos.core.ModuleApp
-import com.mpd.pmdm.practicaroommodulos.databinding.FragmentAddModuleBinding
+import com.mpd.pmdm.practicaroommodulos.databinding.FragmentEditModuleBinding
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModelFactory
 import kotlinx.coroutines.launch
 
 
-class AddModuleFragment : Fragment() {
-    private var _binding: FragmentAddModuleBinding? = null
+class EditModuleFragment : Fragment() {
+    private var _binding: FragmentEditModuleBinding? = null
     private val binding get() = _binding!!
 
     private val modulosViewModel: ModulosViewModel by activityViewModels {
@@ -39,7 +39,7 @@ class AddModuleFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentAddModuleBinding.inflate(inflater, container, false)
+        _binding = FragmentEditModuleBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -49,7 +49,7 @@ class AddModuleFragment : Fragment() {
         registraMandatoryFields()
 
         binding.btnAddModule.setOnClickListener {
-            if(datosValidos()){
+            if (datosValidos()) {
                 lifecycleScope.launch {
                     val id = modulosViewModel.insert(
                         binding.editModuleName.text.toString(),
@@ -57,7 +57,8 @@ class AddModuleFragment : Fragment() {
                     )
 
                     Log.d("AddModuleFragment", "Id insertado: $id")
-                    Toast.makeText(requireContext(), "El id insertado es $id", Toast.LENGTH_LONG).show()
+                    Toast.makeText(requireContext(), "El id insertado es $id", Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         }
@@ -99,13 +100,12 @@ class AddModuleFragment : Fragment() {
 
     private fun datosValidos(): Boolean {
         var okValues = true
-        if(this::mandatoryFields.isInitialized){
-            mandatoryFields.forEach{ (edit, layout) ->
-                if(TextUtils.isEmpty(edit.text)){
+        if (this::mandatoryFields.isInitialized) {
+            mandatoryFields.forEach { (edit, layout) ->
+                if (TextUtils.isEmpty(edit.text)) {
                     layout.error = getString(R.string.error_mandatory)
                     okValues = false
-                }
-                else layout.error = null
+                } else layout.error = null
             }
         }
         return okValues

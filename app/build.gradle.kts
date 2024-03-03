@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -42,10 +43,6 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        compose = true
-    }
-    composeOptions{
-        kotlinCompilerExtensionVersion = "1.5.8"
     }
 
 
@@ -55,15 +52,9 @@ dependencies {
     val room_version = "2.6.1"
     val lifecycle_version = "2.7.0"
     val fragment_version = "1.6.2"
+    val nav_version = "2.7.7"
 
-    //Dependencias para Compose
-    val composeBom = platform("androidx.compose:compose-bom:2024.01.00")
-    implementation(composeBom)
-    implementation("androidx.compose.material3:material3")
-    //Para usar Composables en un fragmento
-    implementation("androidx.fragment:fragment-ktx:$fragment_version")
-    //Para usar observeAsState para observar una lista LiveData en un Composable
-    implementation("androidx.compose.runtime:runtime-livedata")
+
 
     implementation("androidx.room:room-runtime:$room_version")
     // To use Kotlin Symbol Processing (KSP)
@@ -72,7 +63,10 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
-    implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("androidx.fragment:fragment-ktx:$fragment_version")
+    // Kotlin
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

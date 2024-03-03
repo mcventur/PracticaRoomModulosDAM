@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.Relation
 
@@ -17,7 +18,8 @@ import androidx.room.Relation
             onDelete = ForeignKey.CASCADE,
             onUpdate = ForeignKey.CASCADE
         )
-    ]
+    ],
+    indices = [Index("cicloId")]
 )
 data class Module(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
@@ -25,13 +27,15 @@ data class Module(
     val credits: Byte,
     //añadimos dos campos a la tabla
     @ColumnInfo(defaultValue = "1") val cicloId: Long = 1,
-    @ColumnInfo(defaultValue = "1") val curso: Byte = 1
+    @ColumnInfo(defaultValue = "1") val curso: Byte = 1,
+    @ColumnInfo(defaultValue = "") val abreviatura: String = "",
 )
 
 @Entity(tableName = "ciclo")
 data class Ciclo(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val name: String
+    val name: String,
+    @ColumnInfo(defaultValue = "") val abreviatura: String = ""
 )
 
 /*
