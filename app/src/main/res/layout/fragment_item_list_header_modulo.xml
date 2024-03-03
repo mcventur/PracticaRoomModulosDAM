@@ -24,4 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/credits" />
+
+    <!-- Una vista vacía como cabecera del botón editar -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 </LinearLayout>

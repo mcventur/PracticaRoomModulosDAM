@@ -15,4 +15,11 @@
     <string name="error_mandatory">Campo obligatorio</string>
     <string name="abreviatura">Abreviatura</string>
     <string name="module_ciclo">Nombre del ciclo</string>
+    <string name="nuevo_registro">Nuevo registro</string>
+    <string name="sucessfull_operation">Operación realizada</string>
+    <string name="edit_ciclo_title">Ciclo %s</string>
+    <string name="save">Guardar</string>
+    <string name="delete">Eliminar</string>
+    <string name="alertDeleteTitle">Baja de registro</string>
+    <string name="alertDeleteCicloMessage">¿Desea eliminar el ciclo? \nSe borrarán todos los módulos vinculados</string>
 </resources>

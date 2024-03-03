@@ -9,5 +9,60 @@
         android:id="@+id/ciclosFragment"
         android:name="com.mpd.pmdm.practicaroommodulos.ui.CiclosListFragment"
         android:label="Ciclos"
-        tools:layout="@layout/fragment_ciclos_list" />
+        tools:layout="@layout/fragment_ciclos_list" >
+        <action
+            android:id="@+id/action_ciclosFragment_to_editCicloFragment"
+            app:destination="@id/editCicloFragment" >
+            <argument
+                android:name="cicloId"
+                android:defaultValue="0" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/modulesListFragment"
+        android:name="com.mpd.pmdm.practicaroommodulos.ui.AllModulesListFragment"
+        android:label="ModulesListFragment" >
+        <action
+            android:id="@+id/action_modulesListFragment_to_editModuleFragment"
+            app:destination="@id/editModuleFragment" >
+            <argument
+                android:name="cicloId"
+                android:defaultValue="0L" />
+            <argument
+                android:name="moduleId"
+                android:defaultValue="0L" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/editCicloFragment"
+        android:name="com.mpd.pmdm.practicaroommodulos.ui.EditCicloFragment"
+        android:label="Ciclo" >
+        <argument
+            android:name="cicloId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_editCicloFragment_to_editModuleFragment"
+            app:destination="@id/editModuleFragment" >
+            <argument
+                android:name="cicloId"
+                android:defaultValue="0L" />
+            <argument
+                android:name="moduleId"
+                android:defaultValue="0L" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/editModuleFragment"
+        android:name="com.mpd.pmdm.practicaroommodulos.ui.EditModuleFragment"
+        android:label="fragment_edit_module"
+        tools:layout="@layout/fragment_edit_module" >
+        <argument
+            android:name="cicloId"
+            app:argType="long"
+            android:defaultValue="0L" />
+        <argument
+            android:name="moduleId"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
 </navigation>

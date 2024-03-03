@@ -2,19 +2,27 @@ package com.mpd.pmdm.practicaroommodulos.data.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
+import androidx.room.Update
 
 @Dao
 interface ModuleDao {
     @Query("SELECT * FROM module")
     fun getAllModules(): LiveData<List<Module>>
 
+    @Query("SELECT * FROM module WHERE id = :moduleId")
+    fun getModule(moduleId: Long): LiveData<Module>
+
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(module: Module): Long
+
+    @Update
+    suspend fun updateModulo(module: Module)
 
     @Query("DELETE FROM module")
     suspend fun clearAll()
@@ -39,7 +47,7 @@ interface ModuleDao {
     fun getModulesOfCiclo(cicloId: Long): LiveData<List<Module>>
 
     /**
-     * Devuelve el Ciclo de un Módulo
+     * Devuelve el Ciclo de un Módulo, con sus módulos
      */
     @Transaction
     @Query("SELECT ciclo.* FROM module JOIN ciclo ON (ciclo.id = module.cicloId) " +
@@ -48,4 +56,16 @@ interface ModuleDao {
 
     @Query("SELECT * FROM ciclo")
     fun getAllCiclos(): LiveData<List<Ciclo>>
+
+    @Query("SELECT * FROM ciclo WHERE id = :cicloId")
+    fun getCiclo(cicloId: Long): LiveData<Ciclo>
+
+    @Insert
+    suspend fun insertCiclo(ciclo: Ciclo)
+
+    @Update
+    suspend fun updateCiclo(ciclo: Ciclo)
+
+    @Delete
+    suspend fun deleteCiclo(ciclo: Ciclo)
 }

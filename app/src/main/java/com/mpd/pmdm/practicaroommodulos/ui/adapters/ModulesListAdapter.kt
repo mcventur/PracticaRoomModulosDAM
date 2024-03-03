@@ -10,8 +10,8 @@ import com.mpd.pmdm.practicaroommodulos.data.database.Module
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentItemModuloBinding
 
 
-class ModulesRecyclerViewAdapter():
-    ListAdapter<Module, ModulesRecyclerViewAdapter.ViewHolder>(ModuleDiffCallback) {
+class ModulesListAdapter(val onItemClicked: (Module) -> Unit):
+    ListAdapter<Module, ModulesListAdapter.ViewHolder>(ModuleDiffCallback) {
 
     //Escribimos nuestra implementación de Diffutil.Itemcallback
     companion object{
@@ -48,6 +48,9 @@ class ModulesRecyclerViewAdapter():
             binding.moduleId.text = module.id.toString()
             binding.moduleName.text = module.name
             binding.moduleCredits.text = module.credits.toString()
+            binding.moduloEditButton.setOnClickListener {
+                onItemClicked(module)
+            }
         }
     }
 

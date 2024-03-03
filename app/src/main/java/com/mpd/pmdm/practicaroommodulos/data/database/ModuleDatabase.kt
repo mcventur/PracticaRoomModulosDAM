@@ -29,7 +29,8 @@ abstract class ModuleDatabase: RoomDatabase() {
                     context,
                     ModuleDatabase::class.java,
                     "app_database")
-                    //.addMigrations(MIGRATION_1_2)
+                    //.setJournalMode(JournalMode.TRUNCATE)
+                    .createFromAsset("database/dice_rolls_history4.db")
                     .build()
                 INSTANCE = instance
 

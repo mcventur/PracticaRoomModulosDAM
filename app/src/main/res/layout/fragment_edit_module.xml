@@ -18,7 +18,24 @@
             android:id="@+id/editModuleName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/module_name" />
+            android:hint="@string/module_name"
+            android:imeOptions="actionNext"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutModuleAbreviatura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/field_margin"
+        app:layout_constraintTop_toBottomOf="@id/layoutModuleName"
+        tools:layout_editor_absoluteX="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editModuleAbreviatura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/abreviatura"
+            android:imeOptions="actionNext" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -26,14 +43,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/field_margin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutModuleName">
+        app:layout_constraintTop_toBottomOf="@id/layoutModuleAbreviatura"
+        tools:layout_editor_absoluteX="10dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editModuleCredits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/module_credits"
+            android:imeOptions="actionDone"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutModuleCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/field_margin"
+        app:layout_constraintTop_toBottomOf="@id/layoutModuleCredits"
+        tools:layout_editor_absoluteX="10dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editModuleCurso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/abreviatura"
+            android:imeOptions="actionNext"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,7 +80,7 @@
         android:layout_marginTop="@dimen/field_margin"
         android:hint="@string/select_ciclo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutModuleCredits">
+        app:layout_constraintTop_toBottomOf="@id/layoutModuleCurso">
 
         <AutoCompleteTextView
             android:id="@+id/editModuleCiclo"
@@ -58,22 +93,23 @@
 
     <Button
         android:id="@+id/btnAddModule"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/field_margin"
         android:text="Guardar"
-        app:layout_constraintEnd_toStartOf="@+id/btnClearList"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/layoutCiclosList" />
 
     <Button
-        android:id="@+id/btnClearList"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnDeleteModule"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Limpiar lista"
-        app:layout_constraintBottom_toBottomOf="@+id/btnAddModule"
+        android:text="@string/delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnAddModule"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAddModule"
+        app:backgroundTint="?attr/colorSecondary"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

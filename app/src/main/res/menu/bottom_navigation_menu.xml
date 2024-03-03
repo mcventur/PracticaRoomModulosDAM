@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/itemCiclos"
+        android:id="@+id/ciclosFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/learn_svgrepo_com"
         android:title="Ciclos"
         app:showAsAction="always|withText" />
     <item
-        android:id="@+id/itemModulos"
+        android:id="@+id/modulesListFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/seminar_scenery_svgrepo_com"
