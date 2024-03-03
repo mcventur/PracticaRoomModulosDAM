@@ -21,10 +21,18 @@
         android:name="com.mpd.pmdm.practicaroommodulos.ui.ModulesListFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerAddModule"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintVertical_weight="2"
         tools:layout="@layout/fragment_item_list" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_navigation_menu"
+        app:layout_constraintTop_toBottomOf="@id/containerListModules"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
