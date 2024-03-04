@@ -22,4 +22,7 @@
     <string name="delete">Eliminar</string>
     <string name="alertDeleteTitle">Baja de registro</string>
     <string name="alertDeleteCicloMessage">¿Desea eliminar el ciclo? \nSe borrarán todos los módulos vinculados</string>
+    <string name="curso">Curso</string>
+    <string name="nuevo_modulo">Nuevo Módulo</string>
+    <string name="edit_module_title">"Módulo %s"</string>
 </resources>

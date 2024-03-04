@@ -11,8 +11,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import com.mpd.pmdm.practicaroommodulos.R
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentEditModuleBinding
@@ -32,7 +34,7 @@ class EditModuleFragment : Fragment() {
     }
 
     //Mapa de campos obligatorios con sus layouts
-    private lateinit var mandatoryFields: Map<TextView, TextInputLayout>
+    private lateinit var mandatoryFields: MutableMap<TextView, TextInputLayout>
 
 
     override fun onCreateView(
@@ -92,6 +94,9 @@ class EditModuleFragment : Fragment() {
             binding.editModuleCredits.setText(modulo.credits.toString())
             binding.editModuleAbreviatura.setText(modulo.abreviatura)
             binding.editModuleCurso.setText(modulo.curso.toString())
+
+            val actividad = activity as MainActivity
+            actividad.setTitulo(getString(R.string.edit_module_title, modulo.abreviatura))
         }
     }
 
@@ -118,19 +123,45 @@ class EditModuleFragment : Fragment() {
                     )
                     Log.d("AddModuleFragment", "Id insertado: $id")
                 }
-
             }
+
+            informarOperacion()
+        }
+
+        //Si estábamos editando un módulo, volvemos a la pantalla anterior
+        if(moduleId != 0L){
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun informarOperacion() {
+        //Ver https://github.com/material-components/material-components-android/blob/master/docs/components/Snackbar.md#showing-a-snackbar
+        Snackbar.make(binding.root, getString(R.string.sucessfull_operation), Snackbar.LENGTH_SHORT)
+            .show()
+        borrarCampos()
+    }
+
+    private fun borrarCampos() {
+        with(binding){
+            editModuleCurso.text?.clear()
+            editModuleName.text?.clear()
+            editModuleCiclo.text?.clear()
+            editModuleAbreviatura.text?.clear()
+            editModuleCredits.text?.clear()
         }
     }
 
     private fun registraMandatoryFields() {
-        mandatoryFields = mapOf(
+        mandatoryFields = mutableMapOf(
             binding.editModuleName to binding.layoutModuleName,
             binding.editModuleAbreviatura to binding.layoutModuleAbreviatura,
             binding.editModuleCredits to binding.layoutModuleCredits,
-            binding.editModuleCurso to binding.layoutModuleCurso,
-            binding.editModuleCiclo to binding.layoutCiclosList,
+            binding.editModuleCurso to binding.layoutModuleCurso
         )
+        //Si no venimos de click en un ciclo, entonces se obliga a introducirlo
+        if(args.cicloId == 0L){
+            mandatoryFields.put(binding.editModuleCiclo, binding.layoutCiclosList)
+        }
     }
 
 

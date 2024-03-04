@@ -67,7 +67,7 @@
             android:id="@+id/editModuleCurso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/abreviatura"
+            android:hint="@string/curso"
             android:imeOptions="actionNext"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>

@@ -32,7 +32,7 @@ class AppRepository(private val moduleDao: ModuleDao) {
             curso = curso,
             abreviatura = abreviatura
         )
-        moduleDao.insert(module)
+        moduleDao.updateModulo(module)
     }
 
     fun getModulo(moduleId: Long): LiveData<Module> = moduleDao.getModule(moduleId)
@@ -48,7 +48,10 @@ class AppRepository(private val moduleDao: ModuleDao) {
     }
 
     fun getCiclo(cicloId: Long) = moduleDao.getCiclo(cicloId)
-    fun getModulesOfCiclo(cicloId: Long) = moduleDao.getModulesOfCiclo(cicloId)
+    fun getModulesOfCiclo(cicloId: Long): LiveData<List<Module>> {
+        val modulosDelCiclo = moduleDao.getModulesOfCiclo(cicloId)
+        return modulosDelCiclo
+    }
     suspend fun updateCiclo(cicloId: Long, cicloName: String, cicloAbreviatura: String) {
         val ciclo = Ciclo(cicloId, cicloName, cicloAbreviatura)
         moduleDao.updateCiclo(ciclo)

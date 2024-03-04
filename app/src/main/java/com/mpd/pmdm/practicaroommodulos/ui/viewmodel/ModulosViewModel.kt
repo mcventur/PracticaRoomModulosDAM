@@ -103,7 +103,9 @@ class ModulosViewModel(private val appRepository: AppRepository) : ViewModel() {
         }
     }
 
-    fun getModulesOfCiclo(cicloid: Long) = appRepository.getModulesOfCiclo(cicloid)
+    fun getModulesOfCiclo(cicloid: Long): LiveData<List<Module>> {
+        return appRepository.getModulesOfCiclo(cicloid)
+    }
 
 
     fun clearAll() {

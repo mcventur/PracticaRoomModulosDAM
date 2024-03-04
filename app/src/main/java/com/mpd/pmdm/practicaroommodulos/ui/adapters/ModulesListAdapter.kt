@@ -1,5 +1,6 @@
 package com.mpd.pmdm.practicaroommodulos.ui.adapters
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -49,6 +50,7 @@ class ModulesListAdapter(val onItemClicked: (Module) -> Unit):
             binding.moduleName.text = module.name
             binding.moduleCredits.text = module.credits.toString()
             binding.moduloEditButton.setOnClickListener {
+                Log.d("ModulesListAdapter","Click en modulo $module")
                 onItemClicked(module)
             }
         }

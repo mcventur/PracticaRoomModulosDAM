@@ -1,13 +1,16 @@
 package com.mpd.pmdm.practicaroommodulos.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.mpd.pmdm.practicaroommodulos.R
 import com.mpd.pmdm.practicaroommodulos.databinding.FragmentModulosListBinding
 import com.mpd.pmdm.practicaroommodulos.ui.adapters.ModulesListAdapter
 import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModel
@@ -16,7 +19,7 @@ import com.mpd.pmdm.practicaroommodulos.ui.viewmodel.ModulosViewModelFactory
 /**
  * A fragment representing a list of Items.
  */
-class AllModulesListFragment : Fragment() {
+class ModulesListFragment : Fragment() {
     private var _binding: FragmentModulosListBinding? = null
     private val binding get() = _binding!!
 
@@ -52,10 +55,22 @@ class AllModulesListFragment : Fragment() {
 
 
         val adapter = ModulesListAdapter{module ->
-            val action = AllModulesListFragmentDirections
-                .actionModulesListFragmentToEditModuleFragment(
-                    cicloId = module.cicloId,
-                    moduleId = module.id)
+
+            //Este fragmento puede estar directamente en el NavHost como destino actual,
+            //o bien estar dentro del EditCicloFragment. Tenemos que controlarlo para ver desde
+            //qué destino lanzamos la acción deseada
+            val action = if(findNavController().currentDestination?.id == R.id.modulesListFragment){
+                ModulesListFragmentDirections
+                    .actionModulesListFragmentToEditModuleFragment(
+                        cicloId = module.cicloId,
+                        moduleId = module.id)
+            } else{
+                EditCicloFragmentDirections
+                    .actionEditCicloFragmentToEditModuleFragment(
+                        cicloId = module.cicloId,
+                        moduleId = module.id)
+            }
+            findNavController().navigate(action)
         }
         binding.list.adapter = adapter
 
@@ -65,7 +80,8 @@ class AllModulesListFragment : Fragment() {
                 adapter.submitList(it)
             }
         } else {
-            viewModel.getModulesOfCiclo(cicloId!!).observe(viewLifecycleOwner) {
+            viewModel.getModulesOfCiclo(cicloId ?: 0).observe(viewLifecycleOwner) {
+                Log.d("ModulesListFragment", "Modulos del ciclo $cicloId: $it")
                 adapter.submitList(it)
             }
         }

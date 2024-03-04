@@ -6,32 +6,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:clickable="true"
     android:focusable="true"
-    android:layout_margin="@dimen/layout_padding"
+    android:padding="@dimen/layout_padding"
+    android:layout_marginTop="@dimen/layout_padding"
     style="?attr/materialCardViewFilledStyle">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="@dimen/layout_padding">
 
     <TextView
         android:id="@+id/moduleId"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         tools:text="5" />
 
     <TextView
         android:id="@+id/moduleName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_weight="6"
         tools:text="Programación Multimedia y Dispositivos Móviles" />
 
     <TextView
         android:id="@+id/moduleCredits"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         tools:text="30" />
 
     <ImageView
@@ -46,6 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_weight="1"
-        android:layout_gravity="center_vertical"/>
+        android:layout_gravity="center_vertical"
+        android:adjustViewBounds="true"/>
 </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

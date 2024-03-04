@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/modulesListFragment"
-        android:name="com.mpd.pmdm.practicaroommodulos.ui.AllModulesListFragment"
+        android:name="com.mpd.pmdm.practicaroommodulos.ui.ModulesListFragment"
         android:label="ModulesListFragment" >
         <action
             android:id="@+id/action_modulesListFragment_to_editModuleFragment"
@@ -54,7 +54,7 @@
     <fragment
         android:id="@+id/editModuleFragment"
         android:name="com.mpd.pmdm.practicaroommodulos.ui.EditModuleFragment"
-        android:label="fragment_edit_module"
+        android:label="Nuevo módulo"
         tools:layout="@layout/fragment_edit_module" >
         <argument
             android:name="cicloId"

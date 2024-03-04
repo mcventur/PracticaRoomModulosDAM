@@ -115,7 +115,7 @@ class EditCicloFragment : Fragment() {
             }
         }
 
-        val fragmentoListaModulosCiclo = binding.modulosCicloFragment.getFragment<AllModulesListFragment>()
+        val fragmentoListaModulosCiclo = binding.modulosCicloFragment.getFragment<ModulesListFragment>()
         //Esta llamada se ejecuta antes del onViewCreated del fragmento, al hacerla desde nuestro onViewCreated
         fragmentoListaModulosCiclo.setCurrentCicloId(idCiclo.toLong())
     }
