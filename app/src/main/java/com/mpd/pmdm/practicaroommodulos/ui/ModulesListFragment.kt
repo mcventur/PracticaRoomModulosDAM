@@ -44,8 +44,13 @@ class ModulesListFragment : Fragment() {
 
         binding.fabAddModulo.setOnClickListener {
             //Ojo: Realmente, la navegación actualmente está en EditCicloFragment. Tengo que seguir desde ahí
-            val action = EditCicloFragmentDirections
-                .actionEditCicloFragmentToEditModuleFragment(cicloId = cicloId?:0, moduleId = 0)
+            val action = if(findNavController().currentDestination?.id == R.id.editCicloFragment){
+                EditCicloFragmentDirections
+                    .actionEditCicloFragmentToEditModuleFragment(cicloId = cicloId?:0, moduleId = 0)
+            } else{
+                ModulesListFragmentDirections
+                    .actionModulesListFragmentToEditModuleFragment(cicloId = cicloId?:0, moduleId = 0)
+            }
             findNavController().navigate(action)
         }
     }
